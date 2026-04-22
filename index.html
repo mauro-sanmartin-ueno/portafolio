@@ -571,8 +571,11 @@ Check to make sure any new hardware or software is properly installed.
                 <div class="control-btn btn-close" onclick="closeGame()">X</div>
             </div>
         </div>
-        <div class="window-content bg-black flex flex-col">
-            <iframe id="game-iframe" src="" width="100%" height="100%" frameborder="0" style="flex:1;"></iframe>
+        <div class="window-content bg-[#ece9d8] flex flex-col relative">
+            <div id="game-loader" class="absolute inset-0 flex items-center justify-center text-gray-600 text-sm font-bold z-0">
+                Cargando juego...
+            </div>
+            <iframe id="game-iframe" src="" width="100%" height="100%" frameborder="0" style="flex:1; position:relative; z-index:10; background: white;" onload="document.getElementById('game-loader').style.display='none'"></iframe>
         </div>
     </div>
 
@@ -853,6 +856,7 @@ Ingeniero en Informática (UADE). +10 años diseñando, desarrollando y desplega
             const win = document.getElementById('win-game');
             document.getElementById('game-title').innerText = title;
             document.getElementById('game-icon').src = icon;
+            document.getElementById('game-loader').style.display = 'flex'; // Mostrar loader
             document.getElementById('game-iframe').src = url;
             win.style.display = 'flex';
             bringToFront(win);
@@ -862,6 +866,7 @@ Ingeniero en Informática (UADE). +10 años diseñando, desarrollando y desplega
             const win = document.getElementById('win-game');
             win.style.display = 'none';
             document.getElementById('game-iframe').src = '';
+            document.getElementById('game-loader').style.display = 'flex';
         }
 
         // --- EXPLORADOR DE ARCHIVOS ---
@@ -876,7 +881,7 @@ Ingeniero en Informática (UADE). +10 años diseñando, desarrollando y desplega
             'Juegos': [
                 { name: 'Duke_Nukem_3D.exe', iconUrl: 'https://static.wikia.nocookie.net/dukenukem/images/8/81/Nuke_it_by_nukkus-d33nfil-1_1.jpg', isExe: true, action: "showError('Duke_Nukem_3D.exe', 'To run this application, you first must install the following module:\\nDUK3D.GRP\\n\\nContact the application publisher for instructions about obtaining the file.')" },
                 { name: 'Doom.exe', iconUrl: 'https://cdn2.steamgriddb.com/icon_thumb/ef7d30fd7f6763d2c0c53229b27de2de.png', isExe: true, action: "triggerBSOD()" },
-                { name: 'Solitario.exe', iconUrl: 'https://win98icons.alexmeub.com/icons/png/cards-0.png', isExe: true, action: "openGame('Solitario', 'https://solitairewebapp.com/', 'https://win98icons.alexmeub.com/icons/png/cards-0.png')" },
+                { name: 'Solitario.exe', iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Windows_XP_Solitaire_Icon.png/120px-Windows_XP_Solitaire_Icon.png', isExe: true, action: "openGame('Solitario', 'https://www.solitr.com/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Windows_XP_Solitaire_Icon.png/120px-Windows_XP_Solitaire_Icon.png')" },
                 { name: 'Buscaminas.exe', iconUrl: 'https://win98icons.alexmeub.com/icons/png/minesweeper-0.png', isExe: true, action: "openGame('Buscaminas', 'https://minesweeperonline.com/', 'https://win98icons.alexmeub.com/icons/png/minesweeper-0.png')" }
             ]
         };
